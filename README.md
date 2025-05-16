@@ -15,19 +15,24 @@ graph TD
     B --> E[Order Service]
     C & D & E --> F[Azure SQL DB]
     E --> G[Azure Storage Queue]
-🛠️ Tech Stack
-Component	Technology
-Microservices	.NET 8 Minimal API
-Containerization	Docker + Azure Container Apps
-API Gateway	Azure API Management (Developer)
-Database	Azure SQL DB (Free Tier)
-Event-Driven	Azure Storage Queue
-CI/CD	GitHub Actions
-Infrastructure	Bicep (IaC)
-Security	Azure AD + Managed Identities
-📅 4-Week Implementation Plan
-Week 1: Core Setup
+```
 
+## 🛠️ Tech Stack
+| Component | Technology |
+|-----------|------------|
+| Microservices | .NET 8 Minimal API |
+| Containerization | Docker + Azure Container Apps |
+| API Gateway | Azure API Management (Developer) |
+| Database | Azure SQL DB (Free Tier) |
+| Event-Driven | Azure Storage Queue |
+| CI/CD | GitHub Actions |
+| Infrastructure | Bicep (IaC) |
+| Security | Azure AD + Managed Identities |
+
+## 📅 4-Week Implementation Plan
+### Week 1: Core Setup
+
+```mermaid
 gantt
     title Week 1 - Foundation
     dateFormat  YYYY-MM-DD
@@ -39,26 +44,23 @@ gantt
     Order Service (POST)       :active, order, after cart, 3d
     section Deployment
     Dockerize & ACR Push       :crit, docker, 2024-01-04, 1d
-Week 2-4: Advanced Integration
-Week	Focus Area	Key Tasks
-2	API Management & Auth	• APIM Developer Tier Setup
-• Azure AD JWT Integration
-• Storage Queue Eventing
-3	DevSecOps	• GitHub Actions CI/CD
-• Bicep Infrastructure
-• Trivy Container Scanning
-4	Zero Trust & Demo	• Managed Identities
-• k6 Load Testing
-• Final Presentation
-🚀 Getting Started
-Prerequisites
-Azure Student Account ($100 credit)
+```
 
-Docker Desktop
+### Week 2-4: Advanced Integration
+| Week | Focus Area | Key Tasks |
+|------|------------|-----------|
+| 2 | API Management & Auth | • APIM Developer Tier Setup<br>• Azure AD JWT Integration<br>• Storage Queue Eventing |
+| 3 | DevSecOps | • GitHub Actions CI/CD<br>• Bicep Infrastructure<br>• Trivy Container Scanning |
+| 4 | Zero Trust & Demo | • Managed Identities<br>• k6 Load Testing<br>• Final Presentation |
 
-.NET 8 SDK
+## 🚀 Getting Started
+### Prerequisites
+- Azure Student Account ($100 credit)
+- Docker Desktop
+- .NET 8 SDK
 
-Quick Deployment
+### Quick Deployment
+```bash
 # Deploy infrastructure with Bicep
 az deployment group create \
   --resource-group myResourceGroup \
@@ -69,35 +71,18 @@ az containerapp up \
   --name userservice \
   --source ./UserService \
   --resource-group myResourceGroup
-🌐 Architecture
-System Architecture
+```
 
-📊 Monitoring
+## 🌐 Architecture
+![System Architecture](docs/architecture.png)
+
+## 📊 Monitoring
+```mermaid
 graph LR
     A[Container Apps] --> B[Application Insights]
     B --> C[Azure Monitor]
     C --> D[Custom Dashboards]
-📜 License
+```
+
+## 📜 License
 MIT License - See LICENSE for details.
-
-### Key Features:
-1. **Visual Hierarchy** - Mermaid diagrams for architecture/gantt charts
-2. **Badges** - Professional shields.io badges
-3. **Responsive Tables** - Clear tech stack and timeline breakdown
-4. **Deployment Snippets** - Ready-to-copy Azure CLI commands
-5. **Mobile-Friendly** - Proper Markdown formatting
-
-### Recommended Repo Structure:
-📂 .github/
-│ └── workflows/ # GitHub Actions
-📂 docs/
-│ ├── architecture.png # System diagram
-│ └── demo.mp4 # Screen recording
-📂 infra/
-│ └── main.bicep # Infrastructure code
-📂 src/
-│ ├── UserService/ # Microservice 1
-│ ├── CartService/ # Microservice 2
-│ └── OrderService/ # Microservice 3
-📜 README.md # This file
-📜 LICENSE # MIT License
