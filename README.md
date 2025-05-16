@@ -1,87 +1,103 @@
-# AzureMicroCart
+# Azure Microservices E-Commerce System 🚀
 
-📂 **Week 1 - Tận dụng Azure Free Services**
-├── **1.1 Cài đặt (0.5 ngày)**
-│   ├─ Docker Desktop + VS Code
-│   ├─ Azure CLI (`az login` với student account)
-│   └─ Kiểm tra credit: https://www.microsoftazuresponsorships.com/
-│       📌 Lưu ý: Tránh dùng Cosmos DB (tốn credit), thay bằng Azure SQL Database (free tier)
-├── **1.2 Code 3 Microservices (3 ngày)**
-│   ├─ Dùng .NET 8 Minimal API (nhẹ, ít code):
-│   │   - UserService: `/users` (GET/POST)
-│   │   - CartService: `/cart/{userId}` (GET/PUT)
-│   │   - OrderService: `/orders` (POST)
-│   ├─ Database: Azure SQL Free Tier (DTU S0)
-│   └─ Test nhanh với Swagger UI
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/azure-sql/database/free-services
-├── **1.3 Dockerize (1 ngày)**
-│   ├─ Viết Dockerfile đơn giản (multi-stage build)
-│   └─ Chạy local với `docker-compose.yml`
-│       📌 Ví dụ: `docker build -t userservice .`
-├── **1.4 Deploy thử (1.5 ngày)**
-│   ├─ Tạo Azure Container Registry (ACR) - Free tier
-│   ├─ Push 1 image lên ACR (vd: UserService)
-│   └─ Deploy lên Azure Container Apps (Free tier)
-│       📌 Dùng `az containerapp up` để deploy nhanh
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/container-apps/quickstart-code-to-cloud
+[![Azure Container Apps](https://img.shields.io/badge/Azure-Container%20Apps-0078D4?logo=microsoft-azure)](https://azure.microsoft.com/en-us/products/container-apps/)
+[![.NET 8](https://img.shields.io/badge/.NET-8-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-📂 **Week 2 - Sử dụng dịch vụ Free**
-├── **2.1 API Management (2 ngày)**
-│   ├─ Dùng **Azure API Management Developer tier** (Free)
-│   ├─ Import OpenAPI từ Swagger
-│   └─ Thêm rate limiting (vd: 10 requests/phút)
-│       📌 Lưu ý: Developer tier chỉ 1 đơn vị scale
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/api-management/developer-how-to-create-service
-├── **2.2 Auth với Azure AD Free (2 ngày)**
-│   ├─ Đăng ký App Registration (Free)
-│   ├─ Cấu hình JWT Bearer trong .NET Core
-│   └─ Test token với Postman
-│       📌 Dùng MSAL.js cho frontend (nếu có)
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/active-directory/develop/quickstart-v2-netcore-webapi
-├── **2.3 Event-Driven đơn giản (1 ngày)**
-│   ├─ Dùng **Azure Storage Queue** (Free thay Event Grid)
-│   ├─ OrderService gửi message khi tạo đơn
-│   └─ CartService lắng nghe và xử lý
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/storage/queues/storage-quickstart-queues-dotnet
-└── **2.4 Frontend tối giản (1 ngày)**
-    ├─ Dùng Static Web Apps (Free tier)
-    └─ Call API qua APIM endpoint
-        📚 Tutorial: https://learn.microsoft.com/en-us/azure/static-web-apps/get-started-portal
+A cloud-native e-commerce microservices system built with .NET 8, Docker, and Azure Free Tier services, implementing API-first and Zero Trust architectures.
 
-📂 **Week 3 - Tự động hóa Free Tier**
-├── **3.1 GitHub Actions (Free) thay Azure DevOps (2 ngày)**
-│   ├─ Build Docker image + Push lên ACR
-│   ├─ Deploy lên Container Apps
-│   └─ Dùng GitHub Secrets thay Key Vault
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/container-apps/github-actions
-├── **3.2 IaC với Bicep (2 ngày)**
-│   ├─ Viết template triển khai cả hệ thống
-│   └─ Deploy qua `az deployment group create`
-│       📌 Ưu tiên resources free tier trong template
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deploy-cli
-├── **3.3 Security cơ bản (2 ngày)**
-│   ├─ SonarCloud Free (SAST)
-│   ├─ Trivy scan Docker image (miễn phí)
-│   └─ NSG block inbound không cần thiết
-│       📚 Tutorial: https://aquasecurity.github.io/trivy/v0.18.3/
-└── **3.4 Monitoring (1 ngày)**
-    ├─ Dùng Application Insights Free tier
-    └─ Log Analytics: 5GB data free/tháng
-        📚 Tutorial: https://learn.microsoft.com/en-us/azure/azure-monitor/app/azure-web-apps-net-core
+## 📋 Project Overview
+```mermaid
+graph TD
+    A[Frontend] --> B[Azure API Management]
+    B --> C[User Service]
+    B --> D[Cart Service]
+    B --> E[Order Service]
+    C & D & E --> F[Azure SQL DB]
+    E --> G[Azure Storage Queue]
+🛠️ Tech Stack
+Component	Technology
+Microservices	.NET 8 Minimal API
+Containerization	Docker + Azure Container Apps
+API Gateway	Azure API Management (Developer)
+Database	Azure SQL DB (Free Tier)
+Event-Driven	Azure Storage Queue
+CI/CD	GitHub Actions
+Infrastructure	Bicep (IaC)
+Security	Azure AD + Managed Identities
+📅 4-Week Implementation Plan
+Week 1: Core Setup
 
-📂 **Week 4 - Tối ưu hóa**
-├── **4.1 Zero Trust Free (2 ngày)**
-│   ├─ Managed Identity cho Container Apps
-│   ├─ RBAC phân quyền tối thiểu
-│   └─ VNET isolation (nếu credit còn)
-│       📚 Tutorial: https://learn.microsoft.com/en-us/azure/container-apps/managed-identity
-├── **4.2 Load test miễn phí (1 ngày)**
-│   ├─ Dùng k6.io (open-source)
-│   └─ Test auto-scaling của Container Apps
-│       📚 Tutorial: https://k6.io/docs/
-├── **4.3 Chuẩn bị Demo (2 ngày)**
-│   ├─ Viết README.md (kiến trúc + screenshot)
-│   ├─ Quay video demo (3 phút)
-│   └─ Slide tổng hợp (dùng Canva Free)
-└── **4.4 Dự phòng (1 ngày)**
-    └─ Fix lỗi phát sinh + Tối ưu cost
+gantt
+    title Week 1 - Foundation
+    dateFormat  YYYY-MM-DD
+    section Setup
+    Environment Setup          :done, env1, 2024-01-01, 0.5d
+    section Microservices
+    User Service (GET/POST)    :active, user, 2024-01-01, 3d
+    Cart Service (GET/PUT)     :active, cart, after user, 3d
+    Order Service (POST)       :active, order, after cart, 3d
+    section Deployment
+    Dockerize & ACR Push       :crit, docker, 2024-01-04, 1d
+Week 2-4: Advanced Integration
+Week	Focus Area	Key Tasks
+2	API Management & Auth	• APIM Developer Tier Setup
+• Azure AD JWT Integration
+• Storage Queue Eventing
+3	DevSecOps	• GitHub Actions CI/CD
+• Bicep Infrastructure
+• Trivy Container Scanning
+4	Zero Trust & Demo	• Managed Identities
+• k6 Load Testing
+• Final Presentation
+🚀 Getting Started
+Prerequisites
+Azure Student Account ($100 credit)
+
+Docker Desktop
+
+.NET 8 SDK
+
+Quick Deployment
+# Deploy infrastructure with Bicep
+az deployment group create \
+  --resource-group myResourceGroup \
+  --template-file main.bicep
+
+# Deploy microservices
+az containerapp up \
+  --name userservice \
+  --source ./UserService \
+  --resource-group myResourceGroup
+🌐 Architecture
+System Architecture
+
+📊 Monitoring
+graph LR
+    A[Container Apps] --> B[Application Insights]
+    B --> C[Azure Monitor]
+    C --> D[Custom Dashboards]
+📜 License
+MIT License - See LICENSE for details.
+
+### Key Features:
+1. **Visual Hierarchy** - Mermaid diagrams for architecture/gantt charts
+2. **Badges** - Professional shields.io badges
+3. **Responsive Tables** - Clear tech stack and timeline breakdown
+4. **Deployment Snippets** - Ready-to-copy Azure CLI commands
+5. **Mobile-Friendly** - Proper Markdown formatting
+
+### Recommended Repo Structure:
+📂 .github/
+│ └── workflows/ # GitHub Actions
+📂 docs/
+│ ├── architecture.png # System diagram
+│ └── demo.mp4 # Screen recording
+📂 infra/
+│ └── main.bicep # Infrastructure code
+📂 src/
+│ ├── UserService/ # Microservice 1
+│ ├── CartService/ # Microservice 2
+│ └── OrderService/ # Microservice 3
+📜 README.md # This file
+📜 LICENSE # MIT License
